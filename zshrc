@@ -51,7 +51,6 @@ POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='green'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias g++="g++ -std=c++11"
-alias mylinux="ssh -i "/Users/junoth/Dropbox/Material/junoth.pem" ubuntu@ec2-18-219-48-226.us-east-2.compute.amazonaws.com"
 alias tnew="tmux new -s"
 
 # Uncomment the following line to use case-sensitive completion.
