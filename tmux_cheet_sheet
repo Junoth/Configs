@@ -1,0 +1,31 @@
+// All command should be after the prefix: Ctrl + a
+
+tmux new -s [name]     // create a new session with name
+tmux a -s [name]       // attach to the session with name
+tmux kill-session -t [name]   // kill the session with name
+tmux kill-server       // close all sessions
+tmux ls                // show all sessions
+
+// session
+prefix + d        // detach from current session
+prefix + s        // show session list 
+
+// window
+prefix + c         // create new window
+prefix + &         // close current window
+prefix + 0~9       // switch to according window
+prefix + p         // switch to previous window
+prefix + n         // switch to next window
+prefix + w         // show all windows
+
+// pane
+prefix + "         // split vertically
+prefix + %         // split horizontally
+prefix + x         // close current pane
+prefix + z         // maximum current pane, bounce after sending again
+prefix + {         // exchange with previous panel
+prefix + }         // exchange with next panel
+prefix + o         // chose next panelj
+prefix + arrow key      // switch panel
+prefix + option + arrow key       // adjust the border of current panel
+
