@@ -11,6 +11,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'preservim/nerdcommenter'
+Plugin 'DoxygenToolkit.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "
@@ -26,6 +27,16 @@ filetype plugin indent on    " required
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
+" Buffer
+map <C-j> :bnext<CR>
+map <C-k> :bprev<CR>
+map <C-D> :bdelete<CR>
+
+" Doxygen
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_returnTag="@returns "
+let g:DoxygenToolkit_authorName="Junoth"
+
 " vim-airline
 set ambiwidth=double
 let laststatus = 2
@@ -39,9 +50,13 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 syntax on
 set tabstop=2
 set shiftwidth=2
+set termwinsize=20x0
 set expandtab
 set ai
 set number
 set hlsearch
 set ruler
+set splitbelow
+set foldmethod=syntax
+set foldlevel=99
 highlight Comment ctermfg=green
