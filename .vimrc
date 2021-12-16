@@ -5,13 +5,10 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'preservim/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'preservim/nerdcommenter'
-Plugin 'DoxygenToolkit.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 "
@@ -31,11 +28,6 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-j> :bnext<CR>
 map <C-k> :bprev<CR>
 map <C-D> :bdelete<CR>
-
-" Doxygen
-let g:DoxygenToolkit_paramTag_pre="@param "
-let g:DoxygenToolkit_returnTag="@returns "
-let g:DoxygenToolkit_authorName="Junoth"
 
 " vim-airline
 set ambiwidth=double
