@@ -52,6 +52,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jiangmiao/auto-pairs'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'puremourning/vimspector'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " dracula color theme
@@ -72,8 +74,10 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-j> :bnext<CR>
 map <C-k> :bprev<CR>
 map <C-D> :bdelete<CR>
+map <C-S> :Ag<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gD <Plug>(coc-implementation)
+" <C-o> will go back
 nmap <silent> gr <Plug>(coc-references)
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 nmap <silent> <TAB> <Plug>(coc-range-select)

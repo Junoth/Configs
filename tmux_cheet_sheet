@@ -19,8 +19,8 @@ prefix + n         // switch to next window
 prefix + w         // show all windows
 
 // pane
-prefix + "         // split vertically
-prefix + %         // split horizontally
+prefix + |         // split vertically
+prefix + -         // split horizontally
 prefix + x         // close current pane
 prefix + z         // maximum current pane, bounce after sending again
 prefix + {         // exchange with previous panel
