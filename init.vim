@@ -30,12 +30,30 @@ set signcolumn=yes         " always show signcolumns
 highlight Comment ctermfg=green 
 
 " Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " auto-install vim-plug                                                                                                                
 if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
@@ -44,42 +62,40 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif                                                                                                                                 
 
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'dracula/vim'
+  Plug 'martinsione/darkplus.nvim'
   Plug 'scrooloose/nerdtree'
   Plug 'preservim/nerdcommenter'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
   Plug 'jiangmiao/auto-pairs'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'puremourning/vimspector'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()
 
-" dracula color theme
-colorscheme dracula
+" lua config
+lua require('config')
 
-" vim-airline
-set ambiwidth=double
-let laststatus = 2
-let g:airline_powerline_fonts = 1 
-let g:airline_theme="dark"       
-let g:airline#extensions#tabline#enabled = 1    
-let g:airline#extensions#tabline#left_sep = ' '   
-let g:airline#extensions#tabline#left_alt_sep = '|'   
-let g:airline#extensions#tabline#buffer_nr_show = 1
+" dark color theme
+colorscheme darkplus
+
+" markdown-previem https://github.com/iamcco/markdown-preview.nvim
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_port = '9999'
+let g:mkdp_filetypes = ['markdown']
 
 " mapping
 map <C-n> :NERDTreeToggle<CR>
 map <C-j> :bnext<CR>
 map <C-k> :bprev<CR>
 map <C-D> :bdelete<CR>
+map <C-m> :Buffers<CR>
+" sudo pacman -S the_silver_searcher
 map <C-S> :Ag<CR>
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gD <Plug>(coc-implementation)
+nmap <silent> gi <Plug>(coc-implementation)
 " <C-o> will go back
 nmap <silent> gr <Plug>(coc-references)
-" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+nmap <silent> gy <Plug>(coc-type-definition)

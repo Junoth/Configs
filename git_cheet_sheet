@@ -1,0 +1,5 @@
+# Create a mirror repo in own github<ref: https://docs.github.com/enterprise/2.8/user/articles/duplicating-a-repository/>
+git clone --bare <source_git>
+git push --mirror <new_empty_repo>
+git remote add upstream <source_git>
+git remote set-url --push upstream PUSH_DISABLED
