@@ -27,7 +27,6 @@ set hidden                  " if hidden is not set, TextEdit might fail
 set updatetime=300          " will have bad experience for diagnostic messages when it's default 4000
 set shortmess+=c            " don't give |ins-completion-menu| messages.
 set signcolumn=yes         " always show signcolumns
-highlight Comment ctermfg=green 
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -62,7 +61,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif                                                                                                                                 
 
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'martinsione/darkplus.nvim'
+  Plug 'junoth/darkplus.nvim'
   Plug 'scrooloose/nerdtree'
   Plug 'preservim/nerdcommenter'
   Plug 'jiangmiao/auto-pairs'
@@ -71,13 +70,14 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+  Plug 'dense-analysis/ale'
 call plug#end()
-
-" lua config
-lua require('config')
 
 " dark color theme
 colorscheme darkplus
+
+" lua config
+lua require('config')
 
 " markdown-previem https://github.com/iamcco/markdown-preview.nvim
 let g:mkdp_auto_start = 0
@@ -99,3 +99,5 @@ nmap <silent> gi <Plug>(coc-implementation)
 " <C-o> will go back
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
+" leader
+let mapleader = ","
