@@ -69,7 +69,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'puremourning/vimspector'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+  Plug 'kassio/neoterm'
   Plug 'dense-analysis/ale'
 call plug#end()
 
@@ -78,13 +78,6 @@ colorscheme darkplus
 
 " lua config
 lua require('config')
-
-" markdown-previem https://github.com/iamcco/markdown-preview.nvim
-let g:mkdp_auto_start = 0
-let g:mkdp_auto_close = 1
-let g:mkdp_refresh_slow = 0
-let g:mkdp_port = '9999'
-let g:mkdp_filetypes = ['markdown']
 
 " mapping
 map <C-n> :NERDTreeToggle<CR>
@@ -101,3 +94,14 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 " leader
 let mapleader = ","
+
+" remove highlight
+nnoremap <leader>h :set hlsearch!<CR>
+
+" neoterm
+" https://github.com/kassio/neoterm/blob/master/doc/neoterm.txt
+let g:neoterm_default_mod = 'botright'
+nnoremap <leader>c :<c-u>exec 'Tclose!'<cr>
+
+" nerdtree
+nmap <Leader>r :NERDTreeFocus<cr>R<c-w><c-p>
