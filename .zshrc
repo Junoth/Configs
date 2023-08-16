@@ -15,7 +15,6 @@ alias tmuxrc='vim ~/.tmux.conf'
 alias tmuxrcs='source ~/.tmux.conf'
 alias g++='g++ -std=c++17 -Wall'
 
-# yuhangmiao:password
 alias postgres='psql postgres'
 
 export TERM=xterm-256color
@@ -39,6 +38,8 @@ function code {
         open -a "Visual Studio Code" "$argPath"
     fi
 }
+
+autoload -U compinit; compinit
 
 # install zplug, plugin manager for zsh, https://github.com/zplug/zplug
 # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
@@ -78,12 +79,11 @@ zplug load
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #export GOPATH=$HOME/go
-export PATH=/usr/local/texlive/2021/bin/universal-darwin:$PATH
-#export PATH="$GOPATH/bin:$PATH"
+export PATH=/usr/local/texlive/2021/bin/universal-darwin:/usr/local/mysql/bin:/Users/yuhangmiao/.local/bin:$PATH
 
 # java version
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8.0_301)
 
-autoload -U +X bashcompinit && bashcompinit
+# autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
